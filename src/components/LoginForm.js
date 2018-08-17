@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
 
-class LoginForm extends Component {
+export default class LoginForm extends Component {
   constructor() {
     super();
     this.state = {
@@ -16,7 +16,7 @@ class LoginForm extends Component {
     this.setState({
       [event.target.name]: event.target.value
     });
-  }
+  };
 
   handleSubmit = event => {
     event.preventDefault();
@@ -28,8 +28,7 @@ class LoginForm extends Component {
         password: this.state.password
       })
       .then(response => {
-        console.log("login response: ");
-        console.log(response);
+        console.log("login response: ", response);
         if (response.status === 200) {
           this.props.updateUser({
             loggedIn: true,
@@ -41,69 +40,62 @@ class LoginForm extends Component {
         }
       })
       .catch(error => {
-        console.log("login error: ");
-        console.log(error);
+        console.log("login error: ", error);
       });
-  }
+  };
 
   render() {
     if (this.state.redirectTo) {
       return <Redirect to={{ pathname: this.state.redirectTo }} />;
     } else {
       return (
-        <div>
-          <h4>Login</h4>
-          <form className="form-horizontal">
-            <div className="form-group">
-              <div className="col-1 col-ml-auto">
-                <label className="form-label" htmlFor="username">
-                  Username
-                </label>
+        <div id="centeredContent">
+          <div id="loginSignupPage">
+            <h4 id="loginSignupTitle">Login</h4>
+            <form id="loginSignupForm">
+              <div id="formGroup">
+                <div id="loginSignupInfo">
+                  <label id="formLabel" htmlFor="username">
+                    Username
+                  </label>
+                  <input
+                    id="formInput"
+                    type="text"
+                    name="username"
+                    placeholder="Username"
+                    value={this.state.username}
+                    onChange={this.handleChange}
+                  />
+                </div>
               </div>
-              <div className="col-3 col-mr-auto">
-                <input
-                  className="form-input"
-                  type="text"
-                  id="username"
-                  name="username"
-                  placeholder="Username"
-                  value={this.state.username}
-                  onChange={this.handleChange}
-                />
+              <div id="formGroup">
+                <div id="loginSignupInfo">
+                  <label id="formLabel" htmlFor="password">
+                    Password:{" "}
+                  </label>
+                  <input
+                    id="formInput"
+                    placeholder="Password"
+                    type="password"
+                    name="password"
+                    value={this.state.password}
+                    onChange={this.handleChange}
+                  />
+                </div>
               </div>
-            </div>
-            <div className="form-group">
-              <div className="col-1 col-ml-auto">
-                <label className="form-label" htmlFor="password">
-                  Password:{" "}
-                </label>
+              <div id="formGroup">
+                <button
+                  id="submitButton"
+                  onClick={this.handleSubmit}
+                  type="submit"
+                >
+                  Login
+                </button>
               </div>
-              <div className="col-3 col-mr-auto">
-                <input
-                  className="form-input"
-                  placeholder="password"
-                  type="password"
-                  name="password"
-                  value={this.state.password}
-                  onChange={this.handleChange}
-                />
-              </div>
-            </div>
-            <div className="form-group ">
-              <div className="col-7" />
-              <button
-                className="btn btn-primary col-1 col-mr-auto"
-                onClick={this.handleSubmit}
-                type="submit"
-              >
-                Login
-              </button>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       );
     }
   }
 }
-
-export default LoginForm;

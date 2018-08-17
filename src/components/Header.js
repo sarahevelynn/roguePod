@@ -5,13 +5,12 @@ import logo from "../logo.svg";
 import "../App.css";
 import axios from "axios";
 
-class Navbar extends Component {
+export default class Navbar extends Component {
   constructor() {
     super();
-    this.logout = this.logout.bind(this);
   }
 
-  logout(event) {
+  logout = event => {
     event.preventDefault();
     console.log("logging out");
     axios
@@ -26,40 +25,35 @@ class Navbar extends Component {
         }
       })
       .catch(error => {
-        console.log("Logout error");
+        console.log("Error with Logging out");
       });
-  }
+  };
 
   render() {
     const loggedIn = this.props.loggedIn;
-    console.log("navbar render, props: ");
-    console.log(this.props);
-
     return (
       <header id="navbar">
-        <h1 id="AppTitle">Rogue Pod Interview</h1>
+        <Link to="/">
+          <h1 id="AppTitle">Rogue Pod Interview</h1>
+        </Link>
 
         <div id="navButtons">
           {loggedIn ? (
             <section id="navagation">
-              <Link
-                to="#"
-                className="btn btn-link text-secondary"
-                onClick={this.logout}
-              >
+              <Link to="#" onClick={this.logout}>
                 <span id="navagationButton">logout</span>
               </Link>
             </section>
           ) : (
             <section id="navagation">
               <Link to="/">
-                <span id="navagationButton">home</span>
+                <span id="navagationButton">Home</span>
               </Link>
-              <Link to="/login" className="btn btn-link text-secondary">
-                <span id="navagationButton">login</span>
+              <Link to="/login">
+                <span id="navagationButton">Login</span>
               </Link>
-              <Link to="/signup" className="btn btn-link">
-                <span id="navagationButton">sign up</span>
+              <Link to="/signup">
+                <span id="navagationButton">Sign Up</span>
               </Link>
             </section>
           )}
@@ -68,5 +62,3 @@ class Navbar extends Component {
     );
   }
 }
-
-export default Navbar;
