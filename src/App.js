@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import axios from "axios";
-import Signup from "./components/signUp";
-import LoginForm from "./components/LoginForm";
-import Navbar from "./components/Header";
+import "./App.css";
+import Signup from "./components/Header/signUp";
+import LoginForm from "./components/Header/LoginForm";
+import Navbar from "./components/Header/Navbar";
 import Home from "./components/Home";
+import Footer from "./components/Footer/Index";
 
 class App extends Component {
   constructor() {
@@ -17,11 +19,11 @@ class App extends Component {
 
   componentDidMount = () => {
     this.getUser();
-  }
+  };
 
   updateUser = userObject => {
     this.setState(userObject);
-  }
+  };
 
   getUser = () => {
     axios.get("/user/").then(response => {
@@ -42,7 +44,7 @@ class App extends Component {
         });
       }
     });
-  }
+  };
 
   render() {
     return (
@@ -53,15 +55,14 @@ class App extends Component {
               updateUser={this.updateUser}
               loggedIn={this.state.loggedIn}
             />
-            {this.state.loggedIn && (
-              <p>Welcome, {this.state.username}!</p>
-            )}
+            {this.state.loggedIn && <p>Welcome, {this.state.username}!</p>}
             <Route exact path="/" component={Home} />
             <Route
               path="/login"
               render={() => <LoginForm updateUser={this.updateUser} />}
             />
             <Route path="/signup" render={() => <Signup />} />
+            <Footer />
           </div>
         </Router>
       </div>

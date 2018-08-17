@@ -14,6 +14,19 @@ header {
   background-color: #16a085;
 }
 
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: rgba(22, 160, 133, 0.8);
+  height: 80px;
+  width: 100%;
+  color: white;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+}
+
 #AppTitle {
   color: white;
   padding-left: 2rem;
