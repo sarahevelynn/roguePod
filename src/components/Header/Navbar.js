@@ -41,6 +41,9 @@ export default class Navbar extends Component {
               <Link to="#" onClick={this.logout}>
                 <span id="navagationButton">logout</span>
               </Link>
+              <Link to="/photoUpload" >
+                <span id="navagationButton">Upload Photo!</span>
+              </Link>
             </section>
           ) : (
             <section id="navagation">
@@ -60,3 +63,6 @@ export default class Navbar extends Component {
     );
   }
 }
+
+
+this.setState({ imageURL: `http://localhost:8080/photos/${body.}` });

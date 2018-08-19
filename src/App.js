@@ -7,6 +7,7 @@ import LoginForm from "./components/Header/LoginForm";
 import Navbar from "./components/Header/Navbar";
 import Home from "./components/Home";
 import Footer from "./components/Footer/Index";
+import PhotoUploader from "./components/PhotoUploader/Index";
 
 class App extends Component {
   constructor() {
@@ -62,6 +63,7 @@ class App extends Component {
               render={() => <LoginForm updateUser={this.updateUser} />}
             />
             <Route path="/signup" render={() => <Signup />} />
+            <Route path="/photoUpload" render={() => <PhotoUploader />} />
             <Footer />
           </div>
         </Router>
